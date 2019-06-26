@@ -10,11 +10,19 @@ object ApiUtils {
     const val API_KEY = "d6546f41581b8bef4086668438c0788d"
     const val BASE_URL ="http://api.openweathermap.org/data/2.5/weather"
 
-    fun apiRequest(lat:String,lng:String):String {
+    fun apiRequestbylatlang(lat:String,lng:String):String {
         val stringBuilder = StringBuilder(BASE_URL)
         stringBuilder.append(String.format("?lat=%s&lon=%s&APPID=%s&units=metric",lat,lng,API_KEY))
         return stringBuilder.toString()
     }
+
+
+    fun apiRequestByCity(city:String):String {
+        val stringBuilder = StringBuilder(BASE_URL)
+        stringBuilder.append(String.format("?q=%s&APPID=%s",city,API_KEY))
+        return stringBuilder.toString()
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     fun unixTimeStampToDateTime(unixTimeStamp: Double): String {

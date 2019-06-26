@@ -7,9 +7,35 @@
         <variable name="onNextClickListener" type="android.view.View.OnClickListener"/>
     </data>
     <android.support.constraint.ConstraintLayout
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 tools:context=".MainActivity">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            android:background="@color/colorPrimary">
 
+        <EditText
+                android:layout_width="338dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:paddingLeft="@dimen/margin_small"
+                android:backgroundTint="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:hint="@string/enter_city_name"
+                android:id="@+id/ed_enter_city_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.486"
+        />
+        <ImageView
+                android:layout_width="0dp"
+                android:onClick="@{onNextClickListener}"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_arrow_forward_white_24dp"
+                android:id="@+id/id_next" app:layout_constraintTop_toTopOf="@+id/ed_enter_city_name"
+                app:layout_constraintBottom_toBottomOf="@+id/ed_enter_city_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.476"
+                app:layout_constraintStart_toEndOf="@+id/ed_enter_city_name" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0"/>
     </android.support.constraint.ConstraintLayout>
 </layout>
