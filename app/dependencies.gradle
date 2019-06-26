@@ -1,0 +1,177 @@
+ext {
+    /* Android Config */
+    configuration = [
+            package                     : "i.krishnasony.whetherproject",
+            compileSdkVersion           : 28,
+            minSdkVersion               : 16,
+            targetSdkVersion            : 28,
+            versionCode                 : 46,
+            versionName                 : "2.0.0-rc2",
+            testInstrumentationRunner   : "androidx.test.runner.AndroidJUnitRunner"
+    ]
+
+    /* Android Libraries */
+
+    final def vLifecycle        = '1.1.1'
+    final def vMultiDex         = '1.0.3'
+    final def vPaging           = '1.0.1'
+    final def vRoom             = '1.1.1'
+    final def vSupport          = '28.0.0-alpha1'
+    final def vConstraintLayout = '1.1.3'
+
+    /* Third party Libraries */
+
+    final def vCircleImageview          = '2.2.0'
+    final def vDagger                   = '2.21'
+    final def vGlassfishAnnotation      = '10.0-b28'
+    final def vGlide                    = '4.8.0'
+    final def vIndicatorSeekBar         = '2.1.2'
+    final def vJodaTime                 = '2.8.2'
+    final def vJwRetrofitRxJavaAdapter  = '1.0.0'
+    final def vJwRxBinding              = '2.1.1'
+    final def vMaterialSearchView       = '1.4.0'
+    final def vOkHttp                   = '3.11.0'
+    final def vPicasso                  = '2.71828'
+    final def vRetrofit                 = '2.3.0'
+    final def vRxAndroid                = '2.1.0'
+    final def vRxJava                   = '2.2.3'
+    final def vStetho                   = '1.5.0'
+    final def vSwipeLayout              = '1.2.0'
+    final def vTextDrawable             = '1.0.1'
+    final def vTimber                   = '4.7.1'
+    final def vTopSnackbar              = '1.1.1'
+    final def vYoyo                     = '1.1.2'
+
+    /* Test Libraries */
+
+    final def vJUnit = '4.12'
+    final def vMockitoInline        = '2.21.0'
+    final def vMockitoKotlin        = '2.0.0-RC1'
+    final def vMockWebServer        = '2.7.2'
+    final def vSupportTestEspresso  = '3.0.2'
+    final def vSupportTestRunner    = '1.0.2'
+
+
+    androidSupportLibrary  = [
+            constraintLayout        : "com.android.support.constraint:constraint-layout:$vConstraintLayout",
+            support                 : "com.android.support:appcompat-v7:$vSupport",
+            supportDesign           : "com.android.support:design:$vSupport",
+            supportExifInterface    : "com.android.support:exifinterface:$vSupport",
+            supportv4               : "com.android.support:support-v4:$vSupport",
+            vectorDrawables         : "com.android.support:animated-vector-drawable:$vSupport"
+    ]
+
+    archLifecycle = [
+            lifecyleCompiler    : "android.arch.lifecycle:compiler:$vLifecycle",
+            lifecycleExtensions : "android.arch.lifecycle:extensions:$vLifecycle",
+            liveData            : "android.arch.lifecycle:livedata:$vLifecycle",
+            lifecycleViewModel  : "android.arch.lifecycle:viewmodel:$vLifecycle-ktx"
+    ]
+
+    archPaging = [
+            pagingCommon  : "android.arch.paging:common:$vPaging",
+            pagingRuntime : "android.arch.paging:runtime:$vPaging",
+            pagingRxJava  : "android.arch.paging:rxjava2:$vPaging"
+    ]
+
+    archRoom = [
+            compiler    : "android.arch.persistence.room:compiler:$vRoom",
+            runtime     : "android.arch.persistence.room:runtime:$vRoom",
+            rxJava      : "android.arch.persistence.room:rxjava2:$vRoom",
+            testing     : "android.arch.persistence.room:testing:$vRoom"
+    ]
+
+    architectureComponents = [
+            lifecycleViewModel  : archLifecycle.lifecycleViewModel,
+            lifecycleExtensions : archLifecycle.lifecycleExtensions,
+            paging              : archPaging.values(),
+            roomRuntime         : archRoom.runtime,
+            roomRxJava          : archRoom.rxJava
+    ]
+
+    androidLibraries = [
+            architectureComponents  : architectureComponents.values(),
+            multiDex                : "com.android.support:multidex:$vMultiDex",
+            support                 : androidSupportLibrary.values()
+    ]
+
+    rxJavaDependencies = [
+            rxJava    : "io.reactivex.rxjava2:rxjava:$vRxJava",
+            rxAndroid : "io.reactivex.rxjava2:rxandroid:$vRxAndroid",
+            rxBinding : "com.jakewharton.rxbinding2:rxbinding:$vJwRxBinding"
+    ]
+
+    networkDependencies = [
+            retrofit                : "com.squareup.retrofit2:converter-gson:$vRetrofit",
+            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$vRetrofit",
+            retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$vRetrofit",
+            jwRetrofitRxJavaAdapter : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$vJwRetrofitRxJavaAdapter",
+            okHttp3                 : "com.squareup.okhttp3:okhttp:$vOkHttp",
+            okHttp3Logging          : "com.squareup.okhttp3:logging-interceptor:$vOkHttp"
+    ]
+
+    dagger = [
+            dagger                          : "com.google.dagger:dagger:$vDagger",
+            daggerCompiler                  : "com.google.dagger:dagger-compiler:$vDagger",
+            androidTestAnnotationProcessor  : "com.google.dagger:dagger-compiler:$vDagger",
+            testAnnotationProcessor         : "com.google.dagger:dagger-compiler:$vDagger",
+            debugAnnotationProcessor        : "com.google.dagger:dagger-compiler:$vDagger"
+    ]
+
+    libs = [
+
+            circleImageview         : "de.hdodenhof:circleimageview:$vCircleImageview",
+            dagger                  : dagger.dagger,
+            glide                   : "com.github.bumptech.glide:glide:$vGlide",
+            indicatorSeekBar        : "com.github.warkiz.widget:indicatorseekbar:$vIndicatorSeekBar",
+            jodaTime                : "joda-time:joda-time:$vJodaTime",
+            materialSearchView      : "com.miguelcatalan:materialsearchview:$vMaterialSearchView",
+            picasso                 : "com.squareup.picasso:picasso:$vPicasso",
+            stetho                  : "com.facebook.stetho:stetho:$vStetho",
+            stethoOkHttp            : "com.facebook.stetho:stetho-okhttp3:$vStetho",
+            swipeLayout             : "com.daimajia.swipelayout:library:$vSwipeLayout@aar",
+            textDrawable            : "com.amulyakhare:com.amulyakhare.textdrawable:$vTextDrawable",
+            timber                  : "com.jakewharton.timber:timber:$vTimber",
+            topSnackbar             : "com.androidadvance:topsnackbar:$vTopSnackbar",
+            yoyo                    : "com.daimajia.androidanimations:library:$vYoyo@aar"
+    ]
+
+    compileOnly = [
+            glassFishAnnotation : "org.glassfish:javax.annotation:$vGlassfishAnnotation"
+    ]
+
+    kotlinImplementation = [
+            lifecycleCompiler   : archLifecycle.lifecyleCompiler,
+            daggerCompiler      : dagger.daggerCompiler,
+            roomCompiler        : archRoom.compiler
+    ]
+
+    apiImplementation = [
+            supportDesign : "com.android.support:design:$vSupport"
+    ]
+
+    testLibs = [
+            junit           : "junit:junit:$vJUnit",
+            mockitoInline   : "org.mockito:mockito-inline:$vMockitoInline",
+            mockitoKotlin   : "com.nhaarman.mockitokotlin2:mockito-kotlin:$vMockitoKotlin",
+            mockWebServer   : "com.squareup.okhttp:mockwebserver:$vMockWebServer",
+            roomTesting     : archRoom.testing
+    ]
+
+    androidTestLibs = [
+            espresso : "com.android.support.test.espresso:espresso-core:$vSupportTestEspresso",
+            runner   : "com.android.support.test:runner:$vSupportTestRunner"
+    ]
+
+    androidTestAnnotationProcessor = [
+            dagger : dagger.androidTestAnnotationProcessor
+    ]
+
+    testAnnotationProcessor = [
+            dagger : dagger.testAnnotationProcessor
+    ]
+
+    debugAnnotationProcessor = [
+            dagger : dagger.debugAnnotationProcessor
+    ]
+}

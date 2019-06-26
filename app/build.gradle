@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply from: 'dependencies.gradle'
+
+android {
+    compileSdkVersion configuration.compileSdkVersion
+    defaultConfig {
+        applicationId configuration.package
+        minSdkVersion configuration.minSdkVersion
+        targetSdkVersion configuration.targetSdkVersion
+        versionCode configuration.versionCode
+        versionName configuration.versionName
+        vectorDrawables.useSupportLibrary true
+        testInstrumentationRunner configuration.testInstrumentationRunner
+        multiDexEnabled true
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("talview_recruiter.jks")
+            storePassword System.getenv("KSTOREPWD_RECRUITER")
+            keyPassword System.getenv("KEYPWD_RECRUITER")
+            keyAlias "recruiter_app"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources false
+            debuggable = false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable = true
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation androidLibraries.values()
+
+    implementation networkDependencies.values()
+
+    implementation rxJavaDependencies.values()
+
+    kapt kotlinImplementation.values()
+
+    api apiImplementation.values()
+
+    implementation libs.values()
+
+    testImplementation testLibs.values()
+
+    androidTestImplementation androidTestLibs.values()
+
+    androidTestAnnotationProcessor androidTestAnnotationProcessor.values()
+
+    testAnnotationProcessor testAnnotationProcessor.values()
+
+    debugAnnotationProcessor debugAnnotationProcessor.values()
+
+    compileOnly compileOnly.values()
+
+    implementation('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
+        transitive = true
+    }
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+
+}
