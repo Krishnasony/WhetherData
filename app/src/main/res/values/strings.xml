@@ -6,4 +6,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_16_c">16*C</string>
+    <string name="chandigarh">ChandiGarh</string>
+    <string name="_6">6*</string>
+    <string name="_22">22*</string>
+    <string name="scattered_thunderstorm">Scattered Thunderstorm</string>
+    <string name="mon">Mon</string>
+    <string name="_6_13">6/13</string>
+    <string name="tue">Tue</string>
+    <string name="_16_22">16/22</string>
+    <string name="wed">Wed</string>
+    <string name="_16_24">16/24</string>
+    <string name="thu">Thu</string>
+    <string name="_22_18">22/18</string>
+    <string name="fri">Fri</string>
+    <string name="_25_14">25/14</string>
 </resources>
