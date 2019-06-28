@@ -13,7 +13,6 @@
             android:background="@drawable/weather_bg">
 
         <android.support.design.widget.TextInputLayout android:layout_width="0dp"
-                                                       app:hintAnimationEnabled="false"
                                                        android:id="@+id/ed_enter_city_name"
                                                        app:layout_constraintStart_toStartOf="parent"
                                                        app:layout_constraintTop_toTopOf="parent"
@@ -24,11 +23,11 @@
                     android:id="@+id/ed_city_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorAccent"
                     android:hint="@string/enter_city_name"
                     android:lines="1"
                     android:maxLength="50"
                     android:inputType="text"
-                    android:textColorHint="@color/colorAccent"
                     android:backgroundTint="@color/colorAccent"
                     android:layout_marginStart="@dimen/margin_small"
                     android:textColor="@android:color/white"

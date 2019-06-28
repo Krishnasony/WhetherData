@@ -22,10 +22,21 @@ class MainActivity : AppCompatActivity() {
         dataBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         setStatusBarGradiant(this)
         dataBinding.onNextClickListener = onNextClickListener
+
     }
 
+//    private fun getIntentData() {
+//        intent?.let {
+//            intent ->
+//            val cityName:String = intent.getStringExtra(CITY_NAME)
+//            if (cityName.isNotEmpty()){
+//            }
+//        }
+//    }
+
     private var onNextClickListener = View.OnClickListener {
-        val fragment = WeatherDataFragment.newInstance("Bhopal")
+        val cityName = dataBinding.edCityName.editableText.toString()
+        val fragment = WeatherDataFragment.newInstance(cityName)
         replaceFragment(fragment,R.id.container)
     }
 

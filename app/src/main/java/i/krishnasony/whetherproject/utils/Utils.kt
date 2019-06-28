@@ -16,7 +16,7 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
 }
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
-    beginTransaction().func().commit()
+    beginTransaction().func().commitAllowingStateLoss()
 }
 
 fun showToast(context:Context,message:String) = Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
