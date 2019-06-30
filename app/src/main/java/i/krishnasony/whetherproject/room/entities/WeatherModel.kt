@@ -2,6 +2,7 @@ package i.krishnasony.whetherproject.room.entities
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class WeatherModel(
     @SerializedName("base")
@@ -30,7 +31,7 @@ data class WeatherModel(
     var weather: List<Weather?>?,
     @SerializedName("wind")
     var wind: Wind?
-) {
+):Serializable {
     data class Weather(
         @SerializedName("description")
         var description: String?,
@@ -40,26 +41,26 @@ data class WeatherModel(
         var id: Int?,
         @SerializedName("main")
         var main: String?
-    )
+    ):Serializable
 
     data class Coord(
         @SerializedName("lat")
         var lat: Double?,
         @SerializedName("lon")
         var lon: Double?
-    )
+    ):Serializable
 
     data class Clouds(
         @SerializedName("all")
         var all: Int?
-    )
+    ):Serializable
 
     data class Wind(
         @SerializedName("deg")
         var deg: Double?,
         @SerializedName("speed")
         var speed: Double?
-    )
+    ):Serializable
 
     data class Sys(
         @SerializedName("country")
@@ -70,12 +71,12 @@ data class WeatherModel(
         var sunrise: Int?,
         @SerializedName("sunset")
         var sunset: Int?
-    )
+    ):Serializable
 
     data class Rain(
         @SerializedName("3h")
         var h: Double?
-    )
+    ):Serializable
 
     data class Main(
         @SerializedName("grnd_level")
@@ -92,5 +93,5 @@ data class WeatherModel(
         var tempMax: Double?,
         @SerializedName("temp_min")
         var tempMin: Double?
-    )
+    ):Serializable
 }

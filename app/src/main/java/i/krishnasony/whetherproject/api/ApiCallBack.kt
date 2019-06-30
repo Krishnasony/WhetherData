@@ -1,6 +1,6 @@
 package i.krishnasony.whetherproject.api
 
 interface ApiCallBack<T> {
-    abstract fun onSuccess(t: T)
-    abstract fun onFailure(message: String)
+     fun onSuccess(t: T)
+     fun onFailure(message: String)
 }

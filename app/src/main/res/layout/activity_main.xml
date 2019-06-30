@@ -27,6 +27,8 @@
                     android:hint="@string/enter_city_name"
                     android:lines="1"
                     android:maxLength="50"
+                    android:focusedByDefault="false"
+                      android:focusableInTouchMode="true"
                     android:inputType="text"
                     android:backgroundTint="@color/colorAccent"
                     android:layout_marginStart="@dimen/margin_small"

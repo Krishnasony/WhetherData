@@ -10,13 +10,27 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.WindowManager
+import i.krishnasony.whetherproject.api.WhetherApi
 import i.krishnasony.whetherproject.databinding.ActivityMainBinding
+import i.krishnasony.whetherproject.room.entities.WeatherModel
+import i.krishnasony.whetherproject.room.repo.WeatherRepo
 import i.krishnasony.whetherproject.ui.WeatherDataFragment
 import i.krishnasony.whetherproject.utils.replaceFragment
+import i.krishnasony.whetherproject.utils.showToast
+import i.krishnasony.whetherproject.viewmodel.WeatherDataViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var dataBinding: ActivityMainBinding
-
+    val weatherApi: WhetherApi by inject()
+    val mViewModel: WeatherDataViewModel by viewModel()
+    private lateinit var repo: WeatherRepo
+    private var weatherModel:WeatherModel?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
@@ -36,7 +50,28 @@ class MainActivity : AppCompatActivity() {
 
     private var onNextClickListener = View.OnClickListener {
         val cityName = dataBinding.edCityName.editableText.toString()
-        val fragment = WeatherDataFragment.newInstance(cityName)
+            getDataFromViewModel(cityName)
+    }
+
+    private fun getDataFromViewModel(cityName: String) {
+        repo = WeatherRepo(weatherApi,cityName)
+        GlobalScope.launch(Dispatchers.Main) {
+            mViewModel.getWeatherData(repo)
+            delay(500)
+            mViewModel.weatherData.observeForever {
+                it?.let {
+                    weatherModel = it
+                    replaceActivity(cityName, weatherModel!!)
+                }?:run{
+                    showToast(this@MainActivity,"No Data Found")
+                }
+            }
+        }
+
+    }
+
+    private fun replaceActivity(cityName: String, weatherModel: WeatherModel) {
+        val fragment = WeatherDataFragment.newInstance(weatherModel,cityName)
         replaceFragment(fragment,R.id.container)
     }
 

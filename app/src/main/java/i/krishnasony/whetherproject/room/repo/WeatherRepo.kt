@@ -13,7 +13,7 @@ import timber.log.Timber
 class WeatherRepo(private var weatherApi: WhetherApi,private var cityName: String?): WeatherRepoI {
 
 
-    override fun getWeatherData(apiCallBack: ApiCallBack<WeatherModel>) {
+    override fun getWeatherData(apiCallBack: ApiCallBack<WeatherModel>){
         weatherApi.getWheaherData(city = cityName!!,appId = ApiUtils.API_KEY).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()).subscribe(object :Observer<WeatherModel>{
                 override fun onComplete() {
