@@ -4,6 +4,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import i.krishnasony.whetherproject.WeatherApplication
 import i.krishnasony.whetherproject.api.WhetherApi
 import i.krishnasony.whetherproject.room.repo.WeatherRepo
+import i.krishnasony.whetherproject.utils.ApiUtils
+import i.krishnasony.whetherproject.viewmodel.ForeCastViewModel
 import i.krishnasony.whetherproject.viewmodel.WeatherDataViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,13 +19,14 @@ import java.util.concurrent.TimeUnit
 val appModule = module{
 
     viewModel { WeatherDataViewModel() }
+    viewModel { ForeCastViewModel() }
     single {
         androidContext() as WeatherApplication
     }
 
     single {
         Retrofit.Builder()
-            .baseUrl("http://api.openweathermap.org/data/2.5/")
+            .baseUrl(ApiUtils.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(get<OkHttpClient>())

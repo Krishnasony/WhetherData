@@ -2,6 +2,7 @@ package i.krishnasony.whetherproject.room.entities
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ForeCastModel(
     @SerializedName("city")
@@ -14,7 +15,7 @@ data class ForeCastModel(
     var list: List<X?>?,
     @SerializedName("message")
     var message: Double?
-) {
+):Serializable {
     data class City(
         @SerializedName("coord")
         var coord: Coord?,
@@ -28,13 +29,13 @@ data class ForeCastModel(
         var population: Int?,
         @SerializedName("timezone")
         var timezone: Int?
-    ) {
+    ):Serializable {
         data class Coord(
             @SerializedName("lat")
             var lat: Double?,
             @SerializedName("lon")
             var lon: Double?
-        )
+        ):Serializable
     }
 
     data class X(
@@ -54,7 +55,7 @@ data class ForeCastModel(
         var weather: List<Weather?>?,
         @SerializedName("wind")
         var wind: Wind?
-    ) {
+    ):Serializable {
         data class Weather(
             @SerializedName("description")
             var description: String?,
@@ -64,29 +65,29 @@ data class ForeCastModel(
             var id: Int?,
             @SerializedName("main")
             var main: String?
-        )
+        ):Serializable
 
         data class Clouds(
             @SerializedName("all")
             var all: Int?
-        )
+        ):Serializable
 
         data class Sys(
             @SerializedName("pod")
             var pod: String?
-        )
+        ):Serializable
 
         data class Wind(
             @SerializedName("deg")
             var deg: Double?,
             @SerializedName("speed")
             var speed: Double?
-        )
+        ):Serializable
 
         data class Rain(
             @SerializedName("3h")
             var h: Double?
-        )
+        ):Serializable
 
         data class Main(
             @SerializedName("grnd_level")
@@ -105,6 +106,6 @@ data class ForeCastModel(
             var tempMax: Double?,
             @SerializedName("temp_min")
             var tempMin: Double?
-        )
+        ):Serializable
     }
 }

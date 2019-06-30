@@ -12,6 +12,6 @@ interface WhetherApi {
     fun getWheaherData(@Query("q") city:String,@Query("APPID") appId:String): Observable<WeatherModel>
 
     @GET("forecast?")
-    fun getForeCastData(@Query("city") city:String,@Query("APPID") appId:String): Observable<ForeCastModel>
+    fun getForeCastData(@Query("q") city:String,@Query("APPID") appId:String): Observable<ForeCastModel>
 
 }

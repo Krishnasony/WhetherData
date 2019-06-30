@@ -14,20 +14,7 @@ import java.net.URL
 
 object ApiUtils {
     const val API_KEY = "d6546f41581b8bef4086668438c0788d"
-    const val BASE_URL ="http://api.openweathermap.org/data/2.5/weather"
-
-    fun apiRequestbylatlang(lat:String,lng:String):String {
-        val stringBuilder = StringBuilder(BASE_URL)
-        stringBuilder.append(String.format("?lat=%s&lon=%s&APPID=%s&units=metric",lat,lng,API_KEY))
-        return stringBuilder.toString()
-    }
-
-
-    fun apiRequestByCity(city:String):String {
-        val stringBuilder = StringBuilder(BASE_URL)
-        stringBuilder.append(String.format("?q=%s&APPID=%s",city,API_KEY))
-        return stringBuilder.toString()
-    }
+    const val BASE_URL ="http://api.openweathermap.org/data/2.5/"
 
 
     @SuppressLint("SimpleDateFormat")
@@ -56,6 +43,25 @@ object ApiUtils {
             return null
         }
 
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getDayFromDate(date: String):String{
+        val format1 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val dt1 = format1.parse(date)
+        val format2 = SimpleDateFormat("EEEE")
+        var finalDay = format2.format(dt1)
+        when{
+            finalDay =="Sunday"-> finalDay = "Sun"
+            finalDay =="Monday"-> finalDay = "Mon"
+            finalDay =="Tuesday"-> finalDay = "Tue"
+            finalDay =="Wednesday"-> finalDay = "Wed"
+            finalDay =="Thursday"-> finalDay = "Thu"
+            finalDay =="Friday"-> finalDay = "Fri"
+            finalDay =="Saturday"-> finalDay = "Sat"
+
+        }
+        return finalDay
     }
 
     @SuppressLint("SimpleDateFormat")

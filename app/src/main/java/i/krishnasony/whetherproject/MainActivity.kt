@@ -39,15 +39,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    private fun getIntentData() {
-//        intent?.let {
-//            intent ->
-//            val cityName:String = intent.getStringExtra(CITY_NAME)
-//            if (cityName.isNotEmpty()){
-//            }
-//        }
-//    }
-
     private var onNextClickListener = View.OnClickListener {
         val cityName = dataBinding.edCityName.editableText.toString()
             getDataFromViewModel(cityName)
