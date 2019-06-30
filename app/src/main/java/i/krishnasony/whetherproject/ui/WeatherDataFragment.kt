@@ -29,6 +29,9 @@ import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
+
+
+
 /**
  * A simple [Fragment] subclass.
  *
@@ -50,7 +53,19 @@ class WeatherDataFragment : Fragment() {
         dataBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_weather_data,container,false)
         dataBinding.onCityNextClickListener = onEditCityClickListener
         getArgumnets()
+        setSwipeRefreshLayout()
         return dataBinding.root
+    }
+
+    private fun setSwipeRefreshLayout() {
+        dataBinding.idRefresh.setOnClickListener {
+            dataBinding.container.visibility = View.GONE
+            dataBinding.progressBar.visibility = View.VISIBLE
+            GlobalScope.launch {
+                delay(1000)
+                getWeatherData()
+            }
+        }
     }
 
     private fun getWeatherData() {
@@ -61,8 +76,12 @@ class WeatherDataFragment : Fragment() {
             mWeatherViewModel.weatherData.observeForever {
                 it?.let {
                     weatherModel = it
+                    dataBinding.container.visibility = View.VISIBLE
+                    dataBinding.progressBar.visibility = View.GONE
                 }?:run{
                     showToast(context!!,"No Data Found")
+                    dataBinding.container.visibility = View.VISIBLE
+                    dataBinding.progressBar.visibility = View.GONE
                 }
             }
         }
@@ -86,10 +105,14 @@ class WeatherDataFragment : Fragment() {
         repo = WeatherRepo(weatherApi,cityName)
         GlobalScope.launch(Dispatchers.Main) {
             mViewModel.getForeCastData(repo)
+            dataBinding.container.visibility = View.GONE
+            dataBinding.progressBar.visibility = View.VISIBLE
             delay(500)
             mViewModel.forecastData.observeForever {
                 it?.let {
                     setForeCastData(it)
+                    dataBinding.container.visibility = View.VISIBLE
+                    dataBinding.progressBar.visibility = View.GONE
                 }?:run{
                     showToast(context!!,"No Data Found")
                 }
